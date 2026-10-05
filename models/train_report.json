@@ -1,0 +1,83 @@
+{
+  "dataset": "NEU-CLS (figshare 28903550), 6 classes x 295 images",
+  "split": {
+    "train": 1236,
+    "val": 264,
+    "test": 270,
+    "seed": 7
+  },
+  "params": 186022,
+  "epochs": 40,
+  "train_seconds": 275.8,
+  "device": "cuda",
+  "val_macro_f1_best": 0.9962,
+  "test_macro_f1": 0.9963,
+  "test_accuracy": 0.9963,
+  "test_per_class_f1": {
+    "crazing": 0.989,
+    "inclusion": 1.0,
+    "patches": 1.0,
+    "pitted_surface": 0.9888,
+    "rolled-in_scale": 1.0,
+    "scratches": 1.0
+  },
+  "test_confusion": [
+    [
+      45,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      45,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      45,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      44,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      45,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      45
+    ]
+  ],
+  "classes": [
+    "crazing",
+    "inclusion",
+    "patches",
+    "pitted_surface",
+    "rolled-in_scale",
+    "scratches"
+  ],
+  "onnx_parity": 1.0
+}

@@ -1,0 +1,41 @@
+{
+  "scenario": "broker",
+  "run": "broker-1791201020",
+  "frames": 3000,
+  "fps": 25.0,
+  "fault": "60s at t=30s",
+  "stored_rows": 3000,
+  "distinct_seq": 3000,
+  "lost": 0,
+  "duplicate_rows": 0,
+  "redeliveries_absorbed": 0,
+  "edge_dropped": 0,
+  "edge_max_spool_depth": 2116,
+  "edge_achieved_fps": 21.96,
+  "edge_infer_ms_p95": 40.264,
+  "edge_handoff_ms": {
+    "handoff_ms_p50": 0.327,
+    "handoff_ms_p99": 528.609,
+    "handoff_ms_max": 9974.529
+  },
+  "frame_to_db_ms": {
+    "p50_ms": 105512.194,
+    "p95_ms": 117465.47275,
+    "p99_ms": 118343.52994
+  },
+  "frame_to_dashboard_ms": null,
+  "timeline": [
+    [
+      "fault",
+      31.1
+    ],
+    [
+      "restored",
+      122.4
+    ],
+    [
+      "worker_exit",
+      275.4
+    ]
+  ]
+}

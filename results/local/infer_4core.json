@@ -1,0 +1,10 @@
+{
+  "host": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel",
+  "pin": "SetProcessAffinityMask(0xf) ok=True",
+  "ort_threads": 4,
+  "frames": 3000,
+  "fps": 146.7,
+  "p50_ms": 5.736,
+  "p95_ms": 12.198,
+  "p99_ms": 21.468
+}

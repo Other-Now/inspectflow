@@ -1,0 +1,57 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    ports: ["5672:5672", "15672:15672"]
+    volumes: [rabbitmq:/var/lib/rabbitmq]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "check_port_connectivity"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: inspectflow
+      POSTGRES_PASSWORD: inspectflow
+      POSTGRES_DB: inspectflow
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U inspectflow"]
+      interval: 3s
+      retries: 20
+
+  cloud:
+    build: { context: ., dockerfile: cloud/Dockerfile }
+    environment:
+      DATABASE_URL: postgres://inspectflow:inspectflow@postgres:5432/inspectflow
+      AMQP_URL: amqp://guest:guest@rabbitmq:5672
+    ports: ["8095:8095"]
+    depends_on:
+      rabbitmq: { condition: service_healthy }
+      postgres: { condition: service_healthy }
+
+  # The "edge device": capped at 2 CPUs / 2 GB like a small industrial PC.
+  edge:
+    build: { context: ., dockerfile: edge/Dockerfile }
+    environment:
+      AMQP_URL: amqp://guest:guest@rabbitmq:5672/
+      SPOOL_PATH: /spool/spool.db
+      LINE_ID: L1
+      LINE_FPS: "25"
+      FRAME_COUNT: "1000000"
+      ORT_THREADS: "2"
+    cpus: 2
+    mem_limit: 2g
+    volumes:
+      - spool:/spool
+      - ./results/ci:/results
+    ports: ["9101:9101"]
+    depends_on:
+      rabbitmq: { condition: service_healthy }
+
+volumes:
+  rabbitmq:
+  pgdata:
+  spool:

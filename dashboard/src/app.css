@@ -1,0 +1,41 @@
+:root {
+  --bg: #f6f7f9; --card: #fff; --fg: #1d2330; --muted: #6b7280; --line: #e5e7eb;
+  --accent: #2563eb; --warn: #d97706; --ok: #16a34a; --bad: #dc2626;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f1115; --card: #171a21; --fg: #e5e7eb; --muted: #9ca3af; --line: #2a2f3a; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); }
+.app { max-width: 1200px; margin: 0 auto; padding: 16px; }
+header { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+h1 { font-size: 20px; margin: 0; }
+h2 { font-size: 14px; margin: 0 0 8px; }
+select { padding: 4px 8px; }
+.muted { color: var(--muted); font-size: 12px; font-weight: normal; }
+.dot::before { content: "●"; margin-right: 4px; }
+.dot.up { color: var(--ok); } .dot.down { color: var(--bad); }
+main { display: grid; grid-template-columns: 320px 1fr; gap: 16px; }
+main > section:last-child { grid-column: 1 / -1; }
+@media (max-width: 720px) { main { grid-template-columns: 1fr; } }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.feed ul { list-style: none; margin: 0; padding: 0; max-height: 420px; overflow-y: auto; }
+.feed li { display: flex; gap: 8px; align-items: center; padding: 4px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.feed li:hover, .feed li.sel { background: var(--line); }
+.feed img { border-radius: 3px; image-rendering: pixelated; }
+.lbl { flex: 1; }
+.conf { font-variant-numeric: tabular-nums; }
+.conf.review { color: var(--warn); font-weight: 600; }
+.viewer .big { width: 240px; height: 240px; image-rendering: pixelated; border-radius: 4px; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 13px; }
+dt { color: var(--muted); }
+dd { margin: 0; }
+.bars { display: grid; gap: 4px; margin-bottom: 12px; }
+.bar-row { display: grid; grid-template-columns: 120px 1fr 80px; gap: 8px; align-items: center; font-size: 12px; }
+.bar-track { background: var(--line); height: 10px; border-radius: 5px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: var(--accent); }
+.bar-value { font-variant-numeric: tabular-nums; text-align: right; }
+.series { width: 100%; height: 80px; }
+.s-total { fill: var(--accent); opacity: 0.35; }
+.s-review { fill: var(--warn); }

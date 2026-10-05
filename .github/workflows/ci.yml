@@ -1,0 +1,76 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  edge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r edge/requirements.txt pytest
+      - run: pytest -q edge/tests
+
+  cloud:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_USER: inspectflow, POSTGRES_PASSWORD: inspectflow, POSTGRES_DB: inspectflow }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U inspectflow" --health-interval 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - name: cloud service — typecheck + tests (incl. real Postgres)
+        working-directory: cloud
+        env: { INSPECTFLOW_TEST_DB: "postgres://inspectflow:inspectflow@localhost:5432/inspectflow" }
+        run: npm ci && npm run build && npm test
+      - name: dashboard — typecheck, build, tests
+        working-directory: dashboard
+        run: npm ci && npm run build && npm test
+
+  e2e:
+    needs: [edge, cloud]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - name: build images and start the cloud side
+        run: |
+          mkdir -p results/ci && chmod 777 results/ci
+          docker compose build
+          docker compose up -d --wait rabbitmq postgres cloud
+      - name: harness deps (pika for broker checks, ws for the dashboard probe)
+        run: pip install pika && (cd cloud && npm ci --omit=dev)
+      - name: inference on the 2-CPU / 2 GB edge container
+        run: |
+          nproc
+          docker compose run --rm --no-deps edge python bench_infer.py --model /app/models/defectnet.onnx \
+            --frames-dir /app/frames --list /app/models/test_split.txt --cores 2 --frames 3000 --out /results/infer_2cpu.json
+      - name: steady state (smoke + frame-to-dashboard latency)
+        run: python bench/outage.py --env compose --scenario steady --frames 1500 --fps 25
+      - name: RabbitMQ killed for 60 s
+        run: python bench/outage.py --env compose --scenario broker --frames 3000 --fps 25
+      - name: cloud service killed for 60 s
+        run: python bench/outage.py --env compose --scenario cloud --frames 3000 --fps 25
+      - name: control — no spool, RabbitMQ killed for 60 s
+        run: python bench/outage.py --env compose --scenario broker-direct --frames 3000 --fps 25
+      - name: summarize + assert
+        if: always()
+        run: python bench/summarize.py results/ci >> "$GITHUB_STEP_SUMMARY"
+      - name: logs on failure
+        if: failure()
+        run: docker compose logs --tail 200
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: results-ci, path: results/ci }

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+__pycache__/
+.pytest_cache/
+*.db
+*.db-wal
+*.db-shm
+data/train/
+data/NEU-CLS.zip
+*.log
+results/local/*.cloud.log
+results/local/*.worker.json
+results/local/*.stdout
+results/local/*.metrics.txt
+results/ci/*.worker.json
+.wslip
+models_train.log
