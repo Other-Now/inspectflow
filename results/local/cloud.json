@@ -1,6 +1,7 @@
 {
+  "env": "local",
   "scenario": "cloud",
-  "run": "cloud-1791200439",
+  "run": "cloud-1791202438",
   "frames": 3000,
   "fps": 25.0,
   "fault": "60s at t=30s",
@@ -8,34 +9,42 @@
   "distinct_seq": 3000,
   "lost": 0,
   "duplicate_rows": 0,
-  "redeliveries_absorbed": 6,
+  "redeliveries_absorbed": 0,
   "edge_dropped": 0,
-  "edge_max_spool_depth": 0,
-  "edge_achieved_fps": 24.77,
-  "edge_infer_ms_p95": 16.897,
-  "edge_send_ms": {
-    "send_ms_p50": 5.29,
-    "send_ms_p99": 217.424,
-    "send_ms_max": 2045.841
+  "edge_max_spool_depth": 187,
+  "edge_achieved_fps": 23.92,
+  "edge_infer_ms": {
+    "infer_ms_p50": 15.252,
+    "infer_ms_p95": 49.673,
+    "infer_ms_p99": 130.636
+  },
+  "edge_handoff_ms": {
+    "handoff_ms_p50": 0.337,
+    "handoff_ms_p99": 119.853,
+    "handoff_ms_max": 2790.601
   },
   "frame_to_db_ms": {
-    "p50_ms": 29156.266,
-    "p95_ms": 80445.17074999999,
-    "p99_ms": 85226.13120999999
+    "p50_ms": 15677.435000000001,
+    "p95_ms": 66748.04754999999,
+    "p99_ms": 72273.56528
   },
   "frame_to_dashboard_ms": null,
   "timeline": [
     [
       "fault",
-      30.2
+      34.6
     ],
     [
       "restored",
-      116.2
+      118.0
     ],
     [
       "worker_exit",
-      142.5
+      175.7
+    ],
+    [
+      "db_settled",
+      176.5
     ]
   ]
 }

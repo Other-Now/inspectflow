@@ -1,0 +1,10 @@
+{
+  "host": "x86_64",
+  "pin": "sched_setaffinity(2)",
+  "ort_threads": 2,
+  "frames": 3000,
+  "fps": 250.1,
+  "p50_ms": 3.965,
+  "p95_ms": 4.031,
+  "p99_ms": 4.83
+}

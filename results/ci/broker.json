@@ -1,7 +1,7 @@
 {
-  "env": "local",
+  "env": "compose",
   "scenario": "broker",
-  "run": "broker-1791202164",
+  "run": "broker-1791202647",
   "frames": 3000,
   "fps": 25.0,
   "fault": "60s at t=30s",
@@ -9,42 +9,42 @@
   "distinct_seq": 3000,
   "lost": 0,
   "duplicate_rows": 0,
-  "redeliveries_absorbed": 0,
+  "redeliveries_absorbed": 1,
   "edge_dropped": 0,
-  "edge_max_spool_depth": 2528,
-  "edge_achieved_fps": 21.92,
+  "edge_max_spool_depth": 1723,
+  "edge_achieved_fps": 25.01,
   "edge_infer_ms": {
-    "infer_ms_p50": 14.418,
-    "infer_ms_p95": 53.467,
-    "infer_ms_p99": 121.586
+    "infer_ms_p50": 2.53,
+    "infer_ms_p95": 4.545,
+    "infer_ms_p99": 5.231
   },
   "edge_handoff_ms": {
-    "handoff_ms_p50": 0.364,
-    "handoff_ms_p99": 267.533,
-    "handoff_ms_max": 3512.694
+    "handoff_ms_p50": 0.128,
+    "handoff_ms_p99": 18.568,
+    "handoff_ms_max": 277.722
   },
   "frame_to_db_ms": {
-    "p50_ms": 77776.8805,
-    "p95_ms": 107298.96114999997,
-    "p99_ms": 111689.36583
+    "p50_ms": 13554.622,
+    "p95_ms": 63860.636349999986,
+    "p99_ms": 67458.85969
   },
   "frame_to_dashboard_ms": null,
   "timeline": [
     [
       "fault",
-      30.8
+      30.3
     ],
     [
       "restored",
-      130.8
+      96.5
     ],
     [
       "worker_exit",
-      220.9
+      120.9
     ],
     [
       "db_settled",
-      222.4
+      120.9
     ]
   ]
 }

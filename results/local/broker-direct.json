@@ -1,41 +1,50 @@
 {
+  "env": "local",
   "scenario": "broker-direct",
-  "run": "broker-direct-1791200613",
+  "run": "broker-direct-1791202669",
   "frames": 3000,
   "fps": 25.0,
   "fault": "60s at t=30s",
-  "stored_rows": 1421,
-  "distinct_seq": 1421,
-  "lost": 1579,
+  "stored_rows": 766,
+  "distinct_seq": 766,
+  "lost": 2234,
   "duplicate_rows": 0,
-  "redeliveries_absorbed": 0,
-  "edge_dropped": 1579,
+  "redeliveries_absorbed": 32,
+  "edge_dropped": 2235,
   "edge_max_spool_depth": 0,
   "edge_achieved_fps": 25.0,
-  "edge_infer_ms_p95": 17.656,
-  "edge_send_ms": {
-    "send_ms_p50": 0.018,
-    "send_ms_p99": 24.913,
-    "send_ms_max": 2033.702
+  "edge_infer_ms": {
+    "infer_ms_p50": 10.679,
+    "infer_ms_p95": 31.77,
+    "infer_ms_p99": 67.231
+  },
+  "edge_handoff_ms": {
+    "handoff_ms_p50": 0.014,
+    "handoff_ms_p99": 79.827,
+    "handoff_ms_max": 2332.588
   },
   "frame_to_db_ms": {
-    "p50_ms": 12.812,
-    "p95_ms": 64.873,
-    "p99_ms": 1688.1141999999977
+    "p50_ms": 47.2235,
+    "p95_ms": 98311.719,
+    "p99_ms": 99439.39675
   },
   "frame_to_dashboard_ms": null,
   "timeline": [
     [
       "fault",
-      30.3
+      31.7
     ],
     [
       "restored",
-      105.8
+      118.3
     ],
     [
       "worker_exit",
-      164.8
+      146.8
+    ],
+    [
+      "db_settled",
+      157.8
     ]
   ]
 }

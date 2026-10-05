@@ -1,0 +1,50 @@
+{
+  "env": "compose",
+  "scenario": "steady",
+  "run": "steady-1791202585",
+  "frames": 1500,
+  "fps": 25.0,
+  "fault": null,
+  "stored_rows": 1500,
+  "distinct_seq": 1500,
+  "lost": 0,
+  "duplicate_rows": 0,
+  "redeliveries_absorbed": 0,
+  "edge_dropped": 0,
+  "edge_max_spool_depth": 8,
+  "edge_achieved_fps": 25.0,
+  "edge_infer_ms": {
+    "infer_ms_p50": 2.579,
+    "infer_ms_p95": 4.553,
+    "infer_ms_p99": 5.209
+  },
+  "edge_handoff_ms": {
+    "handoff_ms_p50": 0.118,
+    "handoff_ms_p99": 69.081,
+    "handoff_ms_max": 198.596
+  },
+  "frame_to_db_ms": {
+    "p50_ms": 4.814500000000001,
+    "p95_ms": 94.61465,
+    "p99_ms": 175.28305999999998
+  },
+  "frame_to_dashboard_ms": {
+    "run": "steady-1791202585",
+    "received": 1500,
+    "expected": 1500,
+    "p50_ms": 4.885986328125,
+    "p95_ms": 113.885498046875,
+    "p99_ms": 206.864990234375,
+    "max_ms": 373.887451171875
+  },
+  "timeline": [
+    [
+      "worker_exit",
+      61.1
+    ],
+    [
+      "db_settled",
+      61.1
+    ]
+  ]
+}

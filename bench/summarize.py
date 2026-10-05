@@ -39,7 +39,7 @@ for s in ("steady", "broker", "cloud", "broker-direct"):
         bad.append("control lost nothing: the fault did not bite")
 
 text = "\n".join(out) + "\n"
-with open(os.path.join(d, "SUMMARY.md"), "w") as fh:
+with open(os.path.join(d, "SUMMARY.md"), "w", encoding="utf-8") as fh:
     fh.write(text)
 print(text)
 if bad:

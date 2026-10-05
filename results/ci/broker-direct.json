@@ -1,0 +1,50 @@
+{
+  "env": "compose",
+  "scenario": "broker-direct",
+  "run": "broker-direct-1791202889",
+  "frames": 3000,
+  "fps": 25.0,
+  "fault": "60s at t=30s",
+  "stored_rows": 1290,
+  "distinct_seq": 1290,
+  "lost": 1710,
+  "duplicate_rows": 0,
+  "redeliveries_absorbed": 0,
+  "edge_dropped": 1710,
+  "edge_max_spool_depth": 0,
+  "edge_achieved_fps": 25.01,
+  "edge_infer_ms": {
+    "infer_ms_p50": 2.548,
+    "infer_ms_p95": 4.506,
+    "infer_ms_p99": 5.193
+  },
+  "edge_handoff_ms": {
+    "handoff_ms_p50": 0.007,
+    "handoff_ms_p99": 58.802,
+    "handoff_ms_max": 161.954
+  },
+  "frame_to_db_ms": {
+    "p50_ms": 4.2065,
+    "p95_ms": 17.93699999999995,
+    "p99_ms": 99.34026999999996
+  },
+  "frame_to_dashboard_ms": null,
+  "timeline": [
+    [
+      "fault",
+      30.4
+    ],
+    [
+      "restored",
+      96.7
+    ],
+    [
+      "worker_exit",
+      121.2
+    ],
+    [
+      "db_settled",
+      131.2
+    ]
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "env": "compose",
+  "scenario": "cloud",
+  "run": "cloud-1791202768",
+  "frames": 3000,
+  "fps": 25.0,
+  "fault": "60s at t=30s",
+  "stored_rows": 3000,
+  "distinct_seq": 3000,
+  "lost": 0,
+  "duplicate_rows": 0,
+  "redeliveries_absorbed": 1,
+  "edge_dropped": 0,
+  "edge_max_spool_depth": 5,
+  "edge_achieved_fps": 25.01,
+  "edge_infer_ms": {
+    "infer_ms_p50": 2.512,
+    "infer_ms_p95": 4.525,
+    "infer_ms_p99": 5.484
+  },
+  "edge_handoff_ms": {
+    "handoff_ms_p50": 0.117,
+    "handoff_ms_p99": 14.456,
+    "handoff_ms_max": 178.305
+  },
+  "frame_to_db_ms": {
+    "p50_ms": 1552.4755,
+    "p95_ms": 55101.557749999985,
+    "p99_ms": 59858.19692999999
+  },
+  "frame_to_dashboard_ms": null,
+  "timeline": [
+    [
+      "fault",
+      30.2
+    ],
+    [
+      "restored",
+      91.4
+    ],
+    [
+      "worker_exit",
+      120.8
+    ],
+    [
+      "db_settled",
+      120.8
+    ]
+  ]
+}
